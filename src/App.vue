@@ -50,9 +50,9 @@ export default {
       }
     );
   }
-}, function error(err) {
+} /* function error(err) {
   console.log(err);
-});
+} */ );
     console.log('asdasd');
     };
   }
