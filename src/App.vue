@@ -38,9 +38,11 @@ export default {
     window.extAsyncInit = function() {
          // the Messenger Extensions JS SDK is done loading
          MessengerExtensions.getUserID(function success(uids) {
-           window.attachApp(uids.psid, gift);
+            //window.attachApp(uids.psid, gift);
+            console.log("thread_context-success:"+uids.psid);
          }, function error(err) {
-           window.attachApp();
+           //window.attachApp();
+           console.log(err);
          });
        };
 
