@@ -14,27 +14,26 @@ export default {
   name: 'home',
   components: {
     HelloWorld
+  },
+   mounted() {
+    window.extAsyncInit = function() {
+      // the Messenger Extensions JS SDK is done loading 
+    };
   }
 }
 </script>
 
-
 <script>
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {
-        return;
-    }
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'Messenger'));
-
-</script>
-
-<script>
-indow.extAsyncInit = function() {
-    console.log("test SDK LOAD");
-  };
+const app = new Vue({
+  router,
+  created() {
+    return (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+  }
+}).$mount('#app')
 </script>
