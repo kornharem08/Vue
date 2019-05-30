@@ -34,7 +34,17 @@
 <script>
 export default {
   mounted() {
+
     window.extAsyncInit = function() {
+         // the Messenger Extensions JS SDK is done loading
+         MessengerExtensions.getUserID(function success(uids) {
+           window.attachApp(uids.psid, gift);
+         }, function error(err) {
+           window.attachApp();
+         });
+       };
+
+  /*  window.extAsyncInit = function() {
    MessengerExtensions.getSupportedFeatures(function success(result) {
   let features = result.supported_features;
   if (features.indexOf("context") != -1) {
@@ -54,7 +64,7 @@ export default {
   console.log(err);
 });
     console.log('asdasd');
-    };
+    }; */
   }
 }
 </script>
