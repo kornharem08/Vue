@@ -6,8 +6,8 @@ Vue.config.productionTip = false
 
 new Vue({
   el:'#app',
-  created() {
-    return (function(d, s, id){
+  created : function() {
+     (function(d, s, id){
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) {return;}
       js = d.createElement(s); js.id = id;
