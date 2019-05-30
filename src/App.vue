@@ -42,7 +42,7 @@ export default {
             console.log("thread_context-success:"+uids.psid);
          }, function error(err) {
            //window.attachApp();
-           console.log(err);
+           console.log("err:"+err);
          });
        };
 
