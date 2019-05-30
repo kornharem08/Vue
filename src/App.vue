@@ -30,3 +30,13 @@
   color: #42b983;
 }
 </style>
+
+<script>
+export default {
+  mounted() {
+    window.extAsyncInit = function() {
+    console.log('asdasd');
+    };
+  }
+}
+</script>
