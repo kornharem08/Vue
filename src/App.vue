@@ -35,6 +35,24 @@
 export default {
   mounted() {
     window.extAsyncInit = function() {
+   MessengerExtensions.getSupportedFeatures(function success(result) {
+  let features = result.supported_features;
+  if (features.indexOf("context") != -1) {
+    MessengerExtensions.getContext('272696563407906',
+      function success(thread_context) {
+        // success
+       // document.getElementById("psid").value = thread_context.psid;
+       console.log("thread_context-success");
+        // More code to follow
+      },
+      function error(err) {
+        console.log(err);
+      }
+    );
+  }
+}, function error(err) {
+  console.log(err);
+});
     console.log('asdasd');
     };
   }
