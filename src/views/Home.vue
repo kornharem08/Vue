@@ -18,6 +18,7 @@ export default {
    mounted() {
     window.extAsyncInit = function() {
       // the Messenger Extensions JS SDK is done loading 
+      console.log("sdk load finish")
     };
   }
 }
