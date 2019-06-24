@@ -31,17 +31,18 @@ export default new Router({
       component : Information
     },
     {
-<<<<<<< HEAD
-      path: '/table',
-      name: 'table',
-      component: () => import(/* webpackChunkName: "about" */ './views/Table.vue')
-    },
-=======
       path: '/schedule',
       name: 'schedule',
       component : Schedule
-    }
->>>>>>> e8247336692d9411bf0b1ef356a8165efc51cb66
+    },
+    {
+      path: '/table',
+      name: 'table',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "about" */ './views/Table.vue')
+    },
 
   ]
 })
