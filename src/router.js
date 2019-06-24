@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Information from './views/Information.vue'
+import Schedule from './views/Schedule.vue'
+
 
 
 Vue.use(Router)
@@ -29,10 +31,17 @@ export default new Router({
       component : Information
     },
     {
+<<<<<<< HEAD
       path: '/table',
       name: 'table',
       component: () => import(/* webpackChunkName: "about" */ './views/Table.vue')
     },
+=======
+      path: '/schedule',
+      name: 'schedule',
+      component : Schedule
+    }
+>>>>>>> e8247336692d9411bf0b1ef356a8165efc51cb66
 
   ]
 })
