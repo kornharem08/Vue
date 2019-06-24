@@ -3,7 +3,7 @@
     <div class="schedule">
     <table>
       <tr>
-        <th>Day</th>
+        <th class="color1">Day</th>
         <th>8.00-9.00</th>
         <th>9.00-10.00</th>
         <th>10.00-11.00</th>
@@ -14,12 +14,18 @@
         <th>15.00-16.00</th>
         <th>16.00-17.00</th>
         <th>17.00-18.00</th>
+        <th>18.00-19.00</th>
+        <th>19.00-20.00</th>
       </tr>
 
    <tr v-for="(day,index) in DayArr" :key="day">
         <td>{{day}}</td>
 
-       <td v-for="(column,colIndex) in colArr[index].length" :key="column" :colspan="colArr[index][colIndex]" :style="styleList[index][colIndex]" > </td> 
+       <td v-for="(column,colIndex) in colArr[index].length" :key="column" :colspan="colArr[index][colIndex]" :style="styleList[index][colIndex]" ><div class = "text">{{subjectList[index][colIndex].name}}</div>
+       <div class = "text">{{subjectList[index][colIndex].code}}</div>
+       <div class = "text">{{subjectList[index][colIndex].room}}</div>
+       
+       </td> 
         <!-- {{colArr[index]}} -->
      
       </tr>
@@ -38,7 +44,8 @@ export default {
         return {
             colArr,
             DayArr,
-            styleList
+            styleList,
+            subjectList
         }
     }
 
@@ -50,52 +57,83 @@ var dayTime = [
   {
     Day: "MON",
     TimeStart: "8.30",
-    TimeEnd: "10.30"
+    TimeEnd: "10.30",
+    SubjectCode: "975-100",
+    SubjectName: "WISDOM OF LIVING",
+    ClassRoom: "5303A"
+	
   },
   {
     Day: "MON",
     TimeStart: "13.30",
-    TimeEnd: "15.00"
+    TimeEnd: "15.30",
+    SubjectCode: "975-100",
+    SubjectName: "SOFTWARE CONSTRUCTION&MAIN",
+    ClassRoom: "5303A"
   },
   {
     Day: "TUE",
     TimeStart: "11.00",
-    TimeEnd: "13.00"
+    TimeEnd: "13.00",
+    SubjectCode: "975-100",
+    SubjectName: "DATA MINING",
+    ClassRoom: "5303A"
   },
   {
     Day: "WED",
     TimeStart: "8.00",
-    TimeEnd: "10.00"
+    TimeEnd: "10.00",
+    SubjectCode: "975-100",
+    SubjectName: "INTRO TO GAME DESIGN&DEVELOP",
+    ClassRoom: "5303A"
   },
   {
     Day: "WED",
-    TimeStart: "11.00",
-    TimeEnd: "13.30"
+    TimeStart: "11.30",
+    TimeEnd: "13.30",
+    SubjectCode: "975-100",
+    SubjectName: "SOFTWARE PROCESS IMPROVE",
+    ClassRoom: "5303A"
   },
   {
     Day: "WED",
     TimeStart: "14.00",
-    TimeEnd: "15.00"
+    TimeEnd: "15.00",
+    SubjectCode: "975-100",
+    SubjectName: "DATABASE SYSTEMS",
+    ClassRoom: "5303A"
   },
   {
     Day: "THU",
     TimeStart: "8.00",
-    TimeEnd: "9.00"
+    TimeEnd: "9.00",
+    SubjectCode: "975-100",
+    SubjectName: "BUSINESS INFORMATION SYSTEM",
+    ClassRoom: "5303A"
   },
    {
     Day: "THU",
     TimeStart: "14.00",
-    TimeEnd: "15.00"
+    TimeEnd: "15.00",
+    SubjectCode: "975-100",
+    SubjectName: "ENGLISH FOR JOB APPLICATION",
+    ClassRoom: "5303A"
   },
   {
     Day: "FRI",
     TimeStart: "12.00",
-    TimeEnd: "13.30"
+    TimeEnd: "14.00",
+    SubjectCode: "975-100",
+    SubjectName: "OBJECT-ORIENTED PROGRAM",
+    ClassRoom: "5303A"
   },
   {
     Day: "SAT",
-    TimeStart: "12.00",
-    TimeEnd: "13.30"
+    TimeStart: "12.30",
+    TimeEnd: "14.30",
+    SubjectCode: "975-100",
+    SubjectName: "LINEAR ALGEBRA",
+    ClassRoom: "5303A"
   },
 ];
 var posdayTime = 0;
@@ -105,6 +143,7 @@ var TimeEnd = dayTime[posdayTime].TimeEnd;
 var dayTimeLength = dayTime.length
 let colArr =[[],[],[],[],[],[],[]]
 let styleList =[[],[],[],[],[],[],[]]
+let subjectList = [[],[],[],[],[],[],[]]
 initCreate();
 
 function initCreate(){
@@ -114,9 +153,9 @@ function initCreate(){
     for(let i =0 ;i< 7;i++){
 
         
-         for(let j =1;j<11;j++){
+         for(let j =1;j<13;j++){
              checkstarttime = checkStartTime()
-
+             
             if(checkstarttime == j && dayTimeLength != 0){
            
             if(dayTime[posdayTime].Day == DayArr[i]){
@@ -124,6 +163,7 @@ function initCreate(){
              checkHalf = checkHalfTime(endtime)
              colArr[i].push(endtime+1)
              styleList[i].push(checkHalf)
+             subjectList[i].push({name:dayTime[posdayTime].SubjectName,code:dayTime[posdayTime].SubjectCode,room:dayTime[posdayTime].ClassRoom})
              dayTimeLength--
              j += endtime
 
@@ -141,7 +181,8 @@ function initCreate(){
 
             }else{
                colArr[i].push(0)
-               styleList[i].push(`border:solid; background-color:white; border:solid;`)
+               styleList[i].push(`border:solid; background-color:rgba(0,0,0,.5); border:solid; height: 100px;width:150px ;`)
+               subjectList[i].push("")
             }
 
 
@@ -163,15 +204,15 @@ function initCreate(){
         if(timeStart == 30 && timeEnd == 30){
             let halfF = 50/(col+1)
             let halfs = 100-halfF
-            style = ` border:solid; background: linear-gradient(to right, white ${halfF}%, red ${halfF}%, red ${halfs}%, white ${halfF}%);`
+            style = ` border:solid; background: linear-gradient(to right, rgba(0,0,0,.5)  ${halfF}%, red ${halfF}%, red ${halfs}%, rgba(0,0,0,.5)  ${halfF}%); height: 50px; `
             
         }
         else if(timeStart == 30){
             let halfF = 50/(col+1)
-            style = `border:solid; background-color:red; background: linear-gradient(to right, white ${halfF}%, red ${halfF}%); `;
+            style = `border:solid; background-color:red; background: linear-gradient(to right, rgba(0,0,0,.5) ${halfF}%, red ${halfF}%); `;
         }else if(timeEnd == 30){
             let halfF = 50/(col+1)
-            style = `border:solid; background-color:red; background: linear-gradient(to left, white ${halfF}%, red ${halfF}%); `;
+            style = `border:solid; background-color:red; background: linear-gradient(to left, rgba(0,0,0,.5) ${halfF}%, red ${halfF}%); `;
         }
         else{
             style = `border:solid; background-color:red; border:solid;`;
@@ -198,7 +239,17 @@ function checkStartTime() {
     num = 6;
   } else if (TimeStart >= 14.0 && TimeStart < 15.0) {
     num = 7;
-  }
+  } else if (TimeStart >= 15.0 && TimeStart < 16.0) {
+    num = 8;
+    } else if (TimeStart >= 16.0 && TimeStart < 17.0) {
+    num = 9;
+     } else if (TimeStart >= 17.0 && TimeStart < 18.0) {
+    num = 10;
+     } else if (TimeStart >= 18.0 && TimeStart < 19.0) {
+    num = 11;
+    } else if (TimeStart >= 19.0 && TimeStart < 20.0) {
+    num = 12;
+    }
   return num;
 }
 
@@ -219,6 +270,16 @@ function checkEndTime(col) {
     num = 6;
   } else if (TimeEnd > 14.0 && TimeEnd <= 15.0) {
     num = 7;
+  } else if (TimeEnd > 15.0 && TimeEnd <= 16.0) {
+    num = 8;
+  } else if (TimeEnd > 16.0 && TimeEnd <= 17.0) {
+    num = 9;
+  } else if (TimeEnd > 17.0 && TimeEnd <= 18.0) {
+    num = 10;
+  } else if (TimeEnd > 18.0 && TimeEnd <= 19.0) {
+    num = 11;
+  } else if (TimeEnd > 19.0 && TimeEnd <= 20.0) {
+    num = 12;
   }
   col2 = num - col;
 
@@ -226,6 +287,26 @@ function checkEndTime(col) {
 }
 
 
+ function getRandomColor() {
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i = 0; i < 6; i++ ) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+  }
+
 /* eslint-disable */
 
 </script>
+<style>
+.color1{
+  color: crimson;
+}
+.text{
+  font-size: 12px ;
+}
+body {
+  background-image: url("dandelion-445228_1920.jpg");
+}
+</style>
