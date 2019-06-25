@@ -14,6 +14,8 @@
     <div id="app"></div>
 
     <button v-on:click="random_bg_color();">Color</button>
+  
+  <input type="file" id="uploadPicture" @change="choosephoto">
   </div>
 </template>
 
@@ -46,6 +48,16 @@ export default {
   
     document.body.style.background = bgColor;
     },
+    choosephoto :function(){
+      var fileVal=document.getElementById("uploadPicture");
+      // alert(fileVal.value);
+      var a = "url("+fileVal.value+")"
+      alert(a)
+      document.body.style.backgroundImage = "url("+fileVal.value+")";
+
+    }
+   
+      
   }
 };
 </script>

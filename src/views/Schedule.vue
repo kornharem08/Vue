@@ -31,7 +31,8 @@
       </tr>
        
     </table>
-
+          <button v-on:click="randomColor()">Random Color</button>
+          <input type="file" id="file" ref="file" accept="image/*" v-on:change="handleFileUpload()"/>
   </div>
 </template>
 <script>
@@ -56,6 +57,13 @@ export default {
             styleList,
             subjectList
         }
+    },
+    methods:{
+
+      randomColor: function(){
+        window.location.reload()
+      }
+
     }
   
 
