@@ -36,7 +36,7 @@
      <div class="buttom">
          <button class="btn btn-primary pl-5 pr-5"  v-on:click="download()">Download PDF</button>
           <button v-on:click="randomColor()">Random Color</button>
-          <input type="file" id="file" ref="file" accept="image/*" v-on:change="handleFileUpload()"/>
+          <input type="file" name="" id="file-field" value="Click" v-on:change="updatePreview">
      </div>
    
   </div>
@@ -81,7 +81,21 @@ export default {
             }
 
           );
+      },updatePreview(e){
+      document.getElementById('file-field').click()
+      var reader , files = e.target.files
+      if(files.length === 0){
+        console.log('Empty')
       }
+      reader = new FileReader()
+      reader.onload = (e) =>{
+        // this.imagePreview = e.target.result
+        document.querySelector(".schedule").style.backgroundImage = 'url(' + e.target.result + ')';
+        console.log(document.body.style.backgroundimage = 'url(' + e.target.result + ')' )
+      }
+      reader.readAsDataURL(files[0])
+      // console.log(reader.readAsDataURL(files[0]))
+    },
 
     }
   

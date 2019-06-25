@@ -72,7 +72,7 @@ export default {
       reader.readAsDataURL(files[0])
       // console.log(reader.readAsDataURL(files[0]))
     },
-      /* eslint-disable */
+   
   }
 };
 </script>
