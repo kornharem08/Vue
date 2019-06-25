@@ -77,7 +77,7 @@ var dayTime = [
     Day: "MON",
     TimeStart: "13.30",
     TimeEnd: "15.30",
-    SubjectCode: "975-100",
+    SubjectCode: "975-120",
     SubjectName: "SOFTWARE CONSTRUCTION&MAIN",
     ClassRoom: "5303A"
   },
@@ -93,8 +93,8 @@ var dayTime = [
     Day: "WED",
     TimeStart: "8.00",
     TimeEnd: "10.00",
-    SubjectCode: "975-100",
-    SubjectName: "INTRO TO GAME DESIGN&DEVELOP",
+    SubjectCode: "975-120",
+    SubjectName: "SOFTWARE CONSTRUCTION&MAIN",
     ClassRoom: "5303A"
   },
   {
@@ -154,6 +154,8 @@ var dayTimeLength = dayTime.length
 let colArr =[[],[],[],[],[],[],[]]
 let styleList =[[],[],[],[],[],[],[]]
 let subjectList = [[],[],[],[],[],[],[]]
+let codeColourList = []
+
 initCreate();
 
 function initCreate(){
@@ -206,15 +208,33 @@ function initCreate(){
 
 
  function checkHalfTime(col){
-     
-        
+        let color = null
+        codeColourList.forEach(element => {
+
+               if(element.SubjectCode == dayTime[posdayTime].SubjectCode){
+                  color = element.color 
+                  
+               }
+              
+
+        });
+
+        if(color == null){
+          color = getRandomColor()
+          codeColourList.push({SubjectCode:dayTime[posdayTime].SubjectCode,color:color})
+        }
+
+         console.log("codeColourList:"+JSON.stringify(codeColourList))
+
+        // codeColourList.push({test:"test"})
+        // console.log("codeColourList:"+codeColourList)
         let timeStart = TimeStart.slice(-2)
         let timeEnd = TimeEnd.slice(-2)
         let style
         if(timeStart == 30 && timeEnd == 30){
             let halfF = 50/(col+1)
             let halfs = 100-halfF
-            style = ` border:solid; background: linear-gradient(to right, rgba(0,0,0,.5)  ${halfF}%, red ${halfF}%, red ${halfs}%, rgba(0,0,0,.5)  ${halfF}%); height: 50px; `
+            style = ` border:solid; background: linear-gradient(to right, rgba(0,0,0,.5)  ${halfF}%, ${color} ${halfF}%, ${color} ${halfs}%, rgba(0,0,0,.5)  ${halfF}%); height: 50px; `
             
         }
         else if(timeStart == 30){
@@ -225,7 +245,7 @@ function initCreate(){
             style = `border:solid; background-color:red; background: linear-gradient(to left, rgba(0,0,0,.5) ${halfF}%, red ${halfF}%); `;
         }
         else{
-            style = `border:solid; background-color:red; border:solid;`;
+            style = `border:solid; background-color:${color}; border:solid;`;
         }
 
       return style
@@ -295,6 +315,7 @@ function checkEndTime(col) {
 
   return col2;
 }
+
 
 
  function getRandomColor() {

@@ -36,7 +36,7 @@
 <script>
 export default {
   mounted() {
-
+/* eslint-disable */
     window.extAsyncInit = function() {
          // the Messenger Extensions JS SDK is done loading
          MessengerExtensions.getUserID(function success(uids) {
@@ -71,4 +71,5 @@ export default {
     }; */
   }
 }
+/* eslint-disable */
 </script>

@@ -16,9 +16,11 @@ export default {
     HelloWorld
   },
    mounted() {
+     /* eslint-disable */
     window.extAsyncInit = function() {
       // the Messenger Extensions JS SDK is done loading 
       console.log("sdk load finish")
+      /* eslint-disable */
     };
   }
 }
