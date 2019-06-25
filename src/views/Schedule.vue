@@ -31,8 +31,17 @@
       </tr>
        
     </table>
+
   </div>
 </template>
+<script>
+
+function myFunction() {
+  var x = document.getElementById("myFile").value;
+  document.getElementById("demo").innerHTML = x;
+}
+</script>
+
 
 <script>
 
@@ -48,9 +57,10 @@ export default {
             subjectList
         }
     }
-
+  
 
 }
+
 
 
 var dayTime = [
@@ -306,7 +316,5 @@ function checkEndTime(col) {
 .text{
   font-size: 12px ;
 }
-body {
-  background-image: url("dandelion-445228_1920.jpg");
-}
+
 </style>
