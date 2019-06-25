@@ -36,6 +36,7 @@ export default {
     };
   },
   methods: {
+    /* eslint-disable */
     alerthello: function() {
       alert(this.titel);
     },
@@ -57,7 +58,7 @@ export default {
 
     }
    
-      
+      /* eslint-disable */
   }
 };
 </script>
