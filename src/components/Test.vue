@@ -41,6 +41,7 @@ export default {
     };
   },
   methods: {
+    /* eslint-disable */
     alerthello: function() {
       alert(this.titel);
     },
@@ -70,8 +71,8 @@ export default {
       }
       reader.readAsDataURL(files[0])
       // console.log(reader.readAsDataURL(files[0]))
-    }
-
+    },
+      /* eslint-disable */
   }
 };
 </script>

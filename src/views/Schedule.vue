@@ -1,6 +1,7 @@
 
 <template>
-    <div class="schedule">
+    <div class="scheduleView">
+      <div class="schedule">
     <table>
       <tr>
         <th class="color1">Day</th>
@@ -31,21 +32,29 @@
       </tr>
        
     </table>
+    </div>
+     <div class="buttom">
+         <button class="btn btn-primary pl-5 pr-5"  v-on:click="download()">Download PDF</button>
           <button v-on:click="randomColor()">Random Color</button>
           <input type="file" id="file" ref="file" accept="image/*" v-on:change="handleFileUpload()"/>
+     </div>
+   
   </div>
+
+ 
 </template>
 <script>
-
+/* eslint-disable */
 function myFunction() {
   var x = document.getElementById("myFile").value;
   document.getElementById("demo").innerHTML = x;
 }
+/* eslint-disable */
 </script>
 
 
 <script>
-
+import html2canvas from 'html2canvas'
 
 export default {
     
@@ -62,6 +71,16 @@ export default {
 
       randomColor: function(){
         window.location.reload()
+      },
+      download: function(){
+          html2canvas(document.querySelector(".schedule")).then(
+
+            canvas => {
+              var image = canvas.toDataURL("image/jpeg").replace("image/jpeg","image/octet-stream");
+              saveAs(image,'schedule.jpg')
+            }
+
+          );
       }
 
     }
@@ -69,6 +88,24 @@ export default {
 
 }
 
+ function saveAs(uri, filename) {
+    var link = document.createElement('a');
+    if (typeof link.download === 'string') {
+      link.href = uri;
+      link.download = filename;
+
+      //Firefox requires the link to be in the body
+      document.body.appendChild(link);
+
+      //simulate click
+      link.click();
+
+      //remove the link when done
+      document.body.removeChild(link);
+    } else {
+      window.open(uri);
+    }
+  }
 
 
 var dayTime = [
@@ -334,6 +371,9 @@ function checkEndTime(col) {
             }
             return color;
   }
+
+
+ 
 
 /* eslint-disable */
 
