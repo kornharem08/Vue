@@ -31,9 +31,10 @@ export default new Router({
       component : Information
     },
     {
-      path: '/schedule',
+      path: '/schedule/:studentid',
       name: 'schedule',
-      component : Schedule
+      component : Schedule,
+      props: true
     },
     {
       path: '/table',

@@ -2,6 +2,7 @@
 <template>
     <div class="scheduleView">
       <div class="schedule">
+        <h1>{{ studentid }}</h1>
     <table>
       <tr>
         <th class="color1">Day</th>
