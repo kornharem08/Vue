@@ -31,10 +31,12 @@ export default new Router({
       component : Information
     },
     {
-      path: '/schedule/:studentid',
+      path: '/schedule',
       name: 'schedule',
       component : Schedule,
-      props: true
+      props: (route) => ({
+        prop1: route.query
+      })
     },
     {
       path: '/table',

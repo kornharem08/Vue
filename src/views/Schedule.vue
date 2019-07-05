@@ -2,7 +2,7 @@
 <template>
     <div class="scheduleView">
       <div class="schedule">
-        <h1>{{ studentid }}</h1>
+        <h1>{{ prop1 }}</h1>
     <table>
       <tr>
         <th class="color1">Day</th>
@@ -77,11 +77,25 @@ export default {
           html2canvas(document.querySelector(".schedule")).then(
 
             canvas => {
-              var image = canvas.toDataURL("image/jpeg").replace("image/jpeg","image/octet-stream");
-              saveAs(image,'schedule.jpg')
-            }
+              var image = canvas.toDataURL("image/jpeg").replace("image/jpeg","image/octet-stream");              
+                    this.$http.post('https://chatbot-sis-botv1.herokuapp.com/uploadImg/',
+                          image, {
+                            headers: {
+                              'Content-Type': 'multipart/form-data'
+                            }
+                          }
+                            ).then(function () {
+                              console.log('SUCCESS!!');
+                            })
+                            .catch(function () {
+                              console.log('FAILURE!!');
+                            });
+           });
 
-          );
+
+            
+
+          
       },updatePreview(e){
       document.getElementById('file-field').click()
       var reader , files = e.target.files
@@ -98,8 +112,13 @@ export default {
       // console.log(reader.readAsDataURL(files[0]))
     },
 
+    },
+    props: {
+      prop1: {
+        type: Object,
+        required: true
+      }
     }
-  
 
 }
 
