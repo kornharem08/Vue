@@ -56,6 +56,9 @@ function myFunction() {
 
 <script>
 import html2canvas from 'html2canvas'
+import axios from 'axios'
+import FormData from 'form-data'
+import htmlToImage from 'html-to-image';
 
 export default {
     
@@ -74,27 +77,36 @@ export default {
         window.location.reload()
       },
       download: function(){
-          html2canvas(document.querySelector(".schedule")).then(
+          let data = new FormData();
+          
+          html2canvas(document.querySelector(".schedule")).then(function (canvas){
 
-            canvas => {
-              var image = canvas.toDataURL("image/jpeg").replace("image/jpeg","image/octet-stream");              
-                    this.$http.post('https://chatbot-sis-botv1.herokuapp.com/uploadImg/',
-                          image, {
-                            headers: {
-                              'Content-Type': 'multipart/form-data'
-                            }
-                          }
-                            ).then(function () {
-                              console.log('SUCCESS!!');
+             // Generate the base64 representation of the canvas
+            var base64image = canvas.toDataURL("image/่jpeg");
+
+            // Split the base64 string in data and contentType
+            var block = base64image.split(";");
+            // Get the content type
+            var mimeType = block[0].split(":")[1];// In this case "image/png"
+            // get the real base64 content of the file
+            var realData = block[1].split(",")[1];// For example:  iVBORw0KGgouqw23....
+
+            // Convert b64 to blob and store it into a variable (with real base64 as value)
+            var canvasBlob = b64toBlob(realData, mimeType);
+
+            // 
+              data.append('file',canvasBlob,'scheduleSIS')
+
+                     axios.post('https://sisconnect-db.herokuapp.com/upload',
+                          data).then(function (response) {
+                              console.log('SUCCESS!!:'+JSON.stringify(response));
                             })
-                            .catch(function () {
-                              console.log('FAILURE!!');
+                            .catch(function (response) {
+                              console.log('FAILURE!!'+response);
                             });
-           });
 
-
-            
-
+          })
+ 
           
       },updatePreview(e){
       document.getElementById('file-field').click()
@@ -121,6 +133,32 @@ export default {
     }
 
 }
+
+
+function b64toBlob(b64Data, contentType, sliceSize) {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+
+        var byteCharacters = atob(b64Data);
+        var byteArrays = [];
+
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+            var byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+
+            var byteArray = new Uint8Array(byteNumbers);
+
+            byteArrays.push(byteArray);
+        }
+
+      var blob = new Blob(byteArrays, {type: contentType});
+      return blob;
+}
+
 
  function saveAs(uri, filename) {
     var link = document.createElement('a');
