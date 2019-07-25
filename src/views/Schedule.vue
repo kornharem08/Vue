@@ -318,7 +318,7 @@ function initCreate(){
          }
     }
    
-
+    return "Somthing"
     console.log(colArr)
 }
 
