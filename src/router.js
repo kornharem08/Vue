@@ -3,9 +3,9 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Information from './views/Information.vue'
 import Schedule from './views/Schedule.vue'
-
-
-
+import Api from './views/Api.vue'
+import Grade from './views/Grade.vue'
+import Enroll from './views/Enroll.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -29,6 +29,21 @@ export default new Router({
       path: '/information',
       name: 'information',
       component : Information
+    },
+    {
+      path: '/api',
+      name: 'api',
+      component : Api
+    },
+    {
+      path: '/Grade',
+      name: 'Grade',
+      component : Grade
+    },
+    {
+      path: '/Enroll',
+      name: 'Enroll',
+      component : Enroll
     },
     {
       path: '/schedule',

@@ -1,16 +1,19 @@
 <template>
   <div class="table">
     <b-container fluid>
+
       <b-row>
-        <b-col class="head">2/2562</b-col>
+        <b-col class="head">1/2562</b-col>
       </b-row>
+<div v-for="(v) in info" :key="v"> 
+     
 
       <b-row class="test">
         <b-col cols="4" class="col1">
           <b-row>
             <b-col class="datetime1">
-              <div class ="sjtime">13:00 PM</div>
-               <div class ="sjtime">16:00 PM</div>
+              <div class ="sjtime">{{(v.From)}}</div>
+               <div class ="sjtime">{{(v.To)}}</div>
             </b-col>
           </b-row>
         </b-col>
@@ -18,43 +21,17 @@
         <b-col cols="8">
           <b-row>
             <b-col class="subject1">
-                <div class ="sjname">ASEAN STUDENT</div>
-                <div class ="sjdate"> Date :27/4/2019</div>
-                <div class ="sjroom">Room :5303A</div>  
-                <div class ="sjcode">Subject Code: 975-300</div>  
-                <div class ="sjsection">Section: 1</div>  
+                <div class ="sjname">{{(v.SubjectNameTH)}}</div>
+                <div class ="sjdate">{{(v.ExamDate)}}</div>
+                <div class ="sjroom">{{(v.ExamRooms.toString())}}</div>  
+                <div class ="sjcode">{{(v.SubjectCode)}}</div>  
+                <div class ="sjsection">{{(v.SectionCode)}}</div>  
             </b-col>
           </b-row>
         </b-col>
       </b-row>
-      <b-row class="test">
-        <b-col cols="4" class="col1">
-          <b-row>
-            <b-col class="datetime1">
-              <div class ="sjtime">13:00 PM</div>
-               <div class ="sjtime">16:00 PM</div>
-            </b-col>
-          </b-row>
-        </b-col>
-
-        <b-col cols="8">
-          <b-row>
-            <b-col class="subject1">
-                <div class ="sjname">DATA MINING</div>
-                <div class ="sjdate"> Date :1/5/2019</div>
-                <div class ="sjroom">Room :5303A</div>  
-                <div class ="sjcode">Subject Code: 140-452</div>  
-                <div class ="sjsection">Section: 1</div>  
-            </b-col>
-          </b-row>
-        </b-col>
-      </b-row>
-
-      <b-row>
-        <b-col>1 of 3</b-col>
-        <b-col>2 of 3</b-col>
-        <b-col>3 of 3</b-col>
-      </b-row>
+      </div>
+     
     </b-container>
   </div>
 </template>
@@ -111,3 +88,37 @@
 }
 </style>
 
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      info: {
+        ID: "",
+        SectionOfferID: "",
+        EduYearTH: "",
+        EduTerm: "",
+        SubjectCode: "",
+        SubjectNameTH: "",
+        SubjectNameEN: "",
+        SectionCode: "",
+        ExamDate: "",
+        From: "",
+        To: "",
+        ExamRooms: "",
+        ExamDateType: ""
+      }
+    };
+  },
+  mounted() {
+    var self = this;
+
+    axios
+      .get("https://sispsu.herokuapp.com/api/examschedule/5930213034/2561/2/M")
+      .then(function(response) {
+        console.log(JSON.stringify(response.data.data));
+        self.info = response.data.data;
+      });
+  }
+};
+</script>

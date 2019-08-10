@@ -5,7 +5,10 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/information" >Information</router-link> |
       <router-link to="/Table" >Table</router-link> |
-      <router-link to="/Schedule" >Schedule</router-link> 
+      <router-link to="/Schedule" >Schedule</router-link> |
+      <router-link to="/api" >Examination Schedule</router-link> |
+      <router-link to="/Grade" >Grade</router-link> |
+       <router-link to="/Enroll" >Enroll</router-link> |
     </div>
     <router-view/>
   </div>
@@ -48,27 +51,7 @@ export default {
          });
        };
 
-  /*  window.extAsyncInit = function() {
-   MessengerExtensions.getSupportedFeatures(function success(result) {
-  let features = result.supported_features;
-  if (features.indexOf("context") != -1) {
-    MessengerExtensions.getContext('272696563407906',
-      function success(thread_context) {
-        // success
-       // document.getElementById("psid").value = thread_context.psid;
-       console.log("thread_context-success");
-        // More code to follow
-      },
-      function error(err) {
-        console.log(err);
-      }
-    );
-  }
-}, function error(err) {
-  console.log(err);
-});
-    console.log('asdasd');
-    }; */
+
   }
 }
 /* eslint-disable */
