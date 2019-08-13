@@ -10,7 +10,11 @@
         <th>ชื่อวิชา</th>
         <th>ห้องสอบ</th>
       </tr>
+
       <tr v-for="(v, k,) in info" :key="v">
+      <!-- <template v-for="(v, k,) in info" >
+      <tr v-if="(v.ExamDate == '8/3/2562')" :key="v"> -->
+        
         <td>{{k+1}}</td>
         <td>{{(v.ExamDate)}}</td>
         <td>{{(v.From)}}</td>
@@ -18,12 +22,15 @@
         <td>{{v.SubjectNameTH}}</td>
         <td>{{v.ExamRooms.toString()}}</td>
       </tr>
+    
       <!-- <div v-for="(v, k,) in info" :key="v">
             <h2>{{k}} {{(v)}}  </h2>
              
             <hr>
       </div>-->
-    </table>
+     </table>
+    <!-- <b-table striped hover small :items="info" :fields="fields"></b-table> -->
+
   </div>
 </template>
 
@@ -32,6 +39,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      // info:[],
       info: {
         ID: "",
         SectionOfferID: "",
@@ -47,8 +55,36 @@ export default {
         ExamRooms: "",
         ExamDateType: ""
       }
+      // fields: [ 
+      //          {
+      //              key:'SubjectCode',
+      //              sortable :true,
+                   
+      //          },
+      //          {
+      //               key:'SubjectNameEN',
+             
+      //          },
+              
+      //          {
+      //               key:'ExamDate',
+                  
+           
+      //          },
+      //           {
+      //               key:'ExamRooms',
+           
+      //          }
+         
+      //          ],
     };
   },
+  methods: {
+    infoOne: function () {
+    return this.info.filter(i => i.EduYearTH === '2559')
+  },
+  },
+ 
   mounted() {
     var self = this;
 
