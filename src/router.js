@@ -37,6 +37,7 @@ export default new Router({
     {
       path: '/Grade',
       name: 'Grade',
+      mode: 'history',
       component : Grade
     },
     {
