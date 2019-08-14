@@ -11,9 +11,15 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
+  data(){
+    return{
+      path :this.$route.params.path,
+    }
+  },
   name: 'home',
   components: {
-    HelloWorld
+    HelloWorld,
+    
   },
    mounted() {
      /* eslint-disable */
@@ -22,6 +28,14 @@ export default {
       console.log("sdk load finish")
       /* eslint-disable */
     };
+   router.beforeEach((to, from, next) => {
+    if (to.query.path === 'Grade') {
+        next({path: '/Grade'}); // some hypothetical path
+    } else {
+        next();
+    }
+});
+    
   }
 }
 </script>
