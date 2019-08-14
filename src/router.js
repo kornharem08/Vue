@@ -54,7 +54,8 @@ export default new Router({
     },
     {
       path: '/geturl/:id',
-      component : geturl
+      component : geturl,
+      props: false
     },
     {
       path: '/table',
