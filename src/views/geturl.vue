@@ -30,6 +30,7 @@ export default {
          return {
         id: this.$route.params.id ,
         blog : [],
+        props:['id'],
 enrollg: {
         EnrollID: "",
         StudentID: "",
