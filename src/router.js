@@ -55,7 +55,7 @@ export default new Router({
     {
       path: '/geturl/:id',
       component : geturl,
-      props: false
+      props: (route) => ({ query: route.query.id })
     },
     {
       path: '/table',
@@ -65,3 +65,4 @@ export default new Router({
 
   ]
 })
+ 
