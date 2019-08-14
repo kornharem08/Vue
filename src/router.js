@@ -54,6 +54,7 @@ export default new Router({
     },
     {
       path: '/geturl/:id',
+      name: 'geturl',
       component : geturl,
       props: (route) => ({ query: route.query.id })
     },
