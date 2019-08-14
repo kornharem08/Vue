@@ -6,9 +6,11 @@ import Schedule from './views/Schedule.vue'
 import Api from './views/Api.vue'
 import Grade from './views/Grade.vue'
 import Enroll from './views/Enroll.vue'
+import geturl from './views/geturl.vue'
 Vue.use(Router)
 
 export default new Router({
+  
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -20,9 +22,6 @@ export default new Router({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
@@ -54,11 +53,12 @@ export default new Router({
       })
     },
     {
+      path: '/geturl/:id',
+      component : geturl
+    },
+    {
       path: '/table',
       name: 'table',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/Table.vue')
     },
 

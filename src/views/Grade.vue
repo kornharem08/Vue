@@ -130,8 +130,8 @@ export default {
   text-align: left;
 }
 .text{
-text-align: left;
-text-overflow: ellipsis;
+/* text-align: left;
+text-overflow: ellipsis; */
 }
 .rowhead{
 
