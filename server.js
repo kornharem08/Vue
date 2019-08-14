@@ -3,7 +3,7 @@ var path = require('path');
 var serveStatic = require('serve-static');
 const history = require("connect-history-api-fallback");
 app = express();
-app.use(serveStatic(__dirname + "/public"));
+app.use(serveStatic(__dirname + "/dist"));
 
 app.use(
     history({
@@ -13,7 +13,7 @@ app.use(
   );
 
   app.get("/*", function(req, res) {
-    res.render(path.join(__dirname + "/public/index.html"));
+    res.render(path.join(__dirname + "/dist/index.html"));
   });
 var port = process.env.PORT || 5000;
 app.listen(port);
