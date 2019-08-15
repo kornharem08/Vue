@@ -141,7 +141,7 @@ export default {
   },
   methods: {
     randomcolor: function() {
-      alert("border-right:" + "5px solid "+this.hex[Math.floor(Math.random() * this.hex.length)])
+      // alert("border-right:" + "5px solid "+this.hex[Math.floor(Math.random() * this.hex.length)])
       return "border-right:" + "5px solid " + this.hex[Math.floor(Math.random() * this.hex.length)];
     }
   },
