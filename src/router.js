@@ -27,7 +27,8 @@ export default new Router({
     {
       path: '/information',
       name: 'information',
-      component : Information
+      component : Information,
+      
     },
     {
       path: '/api',
