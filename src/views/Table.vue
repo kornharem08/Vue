@@ -4,9 +4,9 @@
       <b-row>
         <b-col class="head">1/2562</b-col>
       </b-row>
-      <div v-for="(v) in info" :key="v" >
+      <div v-for="(v) in info" :key="v"  >
         <b-row class="test">
-          <b-col cols="4" class="col1">
+          <b-col cols="4" class="col1" id="col1" :style="randomcolor()">
             <b-row>
               <b-col class="datetime1">
                 <div class="sjtime">{{(v.From)}}</div>
@@ -34,9 +34,9 @@
 
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .head {
   background-color: rgb(219, 215, 215);
@@ -49,7 +49,7 @@
   border: 5px;
   border-block-color: black;
   /* background-color: ${color}; */
-  background-color: rgb(194, 238, 200);
+  background-color: rgba(232, 235, 234, 0.699);
   /* margin-left: 5px;
   margin-right: 5px; */
   margin-top: 10px;
@@ -64,13 +64,13 @@
 .date {
   size: 18px;
 }
-.col1 {
-  border-right: 2px solid orange;
-}
+/* .col1 {
+  border-right: 3px solid orange;
+} */
 .sjname {
-  font-size: 18px;
+  font-size: 18px;  
   font-weight: bold;
-  color: chocolate;
+  color: rgb(24, 17, 12);
 }
 .sjdate {
   font-size: 18px;
@@ -105,18 +105,51 @@ export default {
         To: "",
         ExamRooms: "",
         ExamDateType: ""
-      }
+      },
+      hex: [
+        "aqua",
+        "black",
+        "blue",
+        "fuchsia",
+        "gray",
+        "green",
+        "lime",
+        "maroon",
+        "navy",
+        "olive",
+        "orange",
+        "purple",
+        "red",
+        "silver",
+        "teal",
+        "white",
+        "yellow"
+      ]
     };
   },
   mounted() {
+
     var self = this;
+    //this.generator()
 
     axios
       .get("https://sispsu.herokuapp.com/api/examschedule/5930213034/2561/2/M")
       .then(function(response) {
-        console.log(JSON.stringify(response.data.data));
+        // console.log(JSON.stringify(response.data.data));
         self.info = response.data.data;
       });
-  }
+  },
+  methods: {
+    randomcolor: function() {
+      alert("border-right:" + "5px solid "+this.hex[Math.floor(Math.random() * this.hex.length)])
+      return "border-right:" + "5px solid " + this.hex[Math.floor(Math.random() * this.hex.length)];
+    }
+  },
+  // computed: {
+  //   randomcolor: function() {
+  //     alert("background-color:" + this.hex[Math.floor(Math.random() * this.hex.length)])
+  //     return "background-color:" + this.hex[Math.floor(Math.random() * this.hex.length)];
+  //   }
+  // }
 };
 </script>

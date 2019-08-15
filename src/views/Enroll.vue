@@ -1,24 +1,24 @@
 <template>
   <div class="container">
     <h1>Enroll</h1>
-    <table class="table table-bordered">
+    <table class="table">
       <tr>
-        <th>ลำดับ</th>
-        <th>SubjectCode</th>
-        <th>EduYearTH</th>
-        <th>SubjectNameTH</th>
-        <th>SubjectNameEN</th>
-        <th>Credit</th>
-        <th>EnrolTypeID</th>
+        <td>ลำดับ</td>
+        <td>SubjectCode</td>
+        <td>EduYearTH</td>
+        <td>SubjectNameTH</td>
+        <td>SubjectNameEN</td>
+        <td>Credit</td>
+        <td>EnrolTypeID</td>
       </tr>
-      <tr v-for="(v, k,) in info" :key="v">
-        <td>{{k+1}}</td>
-        <td>{{(v.SubjectCode)}}</td>
-        <td>{{(v.EduYearTH)}}</td>
-        <td>{{(v.SubjectNameTH)}}</td>
-        <td>{{v.SubjectNameEN}}</td>
-        <td>{{v.Credit}}</td>
-        <td>{{v.EnrolTypeID}}</td>
+      <tr v-for="(value, index,) in info" :key="index">
+        <td>{{index+1}}</td>
+        <td>{{(value.SubjectCode)}}</td>
+        <td>{{(value.EduYearTH)}}</td>
+        <td>{{(value.SubjectNameTH)}}</td>
+        <td>{{value.SubjectNameEN}}</td>
+        <td>{{value.Credit}}</td>
+        <td>{{value.EnrolTypeID}}</td>
       </tr>
     </table>
   </div>
@@ -58,7 +58,7 @@ export default {
     axios
       .get("https://sispsu.herokuapp.com/api/enroll/5930213034/")
       .then(function(response) {
-        console.log(JSON.stringify(response.data.data));
+        // console.log(JSON.stringify(response.data.data));
         self.info = response.data.data;
       });
   }

@@ -1,41 +1,39 @@
 <template>
   <!-- <div class="container"> -->
   <!-- <h1>Examination Schedule</h1> -->
-  <table class="table ">
-<tr>
-        <!-- <th>ลำดับ</th>
-        <th>StudentID</th>  -->
-        <!-- <th>SubjectID</th> -->
-        <td class = "sbjname">SubjectNameEN</td>
-        <td>SubjectCode</td>
-        <td>Credit</td>
-        <!-- <th>SubjectNameTH</th> -->
+  <table class="table">
+    <tr>
+      <!-- <th>ลำดับ</th>
+      <th>StudentID</th>-->
+      <!-- <th>SubjectID</th> -->
+      <td class="sbjname">SubjectNameEN</td>
+      <td>SubjectCode</td>
+      <!-- <th>SubjectNameTH</th> -->
 
-        <!-- <th>EduYearTH</th> -->
-        <td>Grade</td>
-  </tr>
+      <!-- <th>EduYearTH</th> -->
+      <td>Grade</td>
+    </tr>
 
-  <template v-for="(v) in info" >
-  <tr v-if="(v.EduYearTH == '2559')" :key="v">
-       
-  <!-- <tr v-for="(v, k,) in info" :key="v"> -->
- <!-- <td>{{k+1}}</td>
-  <td>{{(v.StudentID)}}</td> -->
-  <!-- <td>{{(v.SubjectID)}}</td> -->
-  <td class = "sbjname">{{v.SubjectNameEN}}</td> 
-  <td>{{v.SubjectCode}}</td>
-  <!-- <td>{{a.Credit}}</td> -->
-  <!-- <td>{{v.SubjectNameTH}}</td> -->
-  
-  <!-- <td>{{v.EduYearTH}}</td> -->
-  <td>{{v.Grade}}</td>
-</tr>
-  </template>
-  <!-- <div v-for="(v, k,) in info" :key="v">
+    <template v-for="(v) in info">
+      <tr v-if="(v.EduYearTH == '2559')" :key="v">
+        <!-- <tr v-for="(v, k,) in info" :key="v"> -->
+        <!-- <td>{{k+1}}</td>
+        <td>{{(v.StudentID)}}</td>-->
+        <!-- <td>{{(v.SubjectID)}}</td> -->
+        <td class="sbjname">{{v.SubjectNameEN}}</td>
+        <td>{{v.SubjectCode}}</td>
+        <!-- <td>{{a.Credit}}</td> -->
+        <!-- <td>{{v.SubjectNameTH}}</td> -->
+
+        <!-- <td>{{v.EduYearTH}}</td> -->
+        <td>{{v.Grade}}</td>
+      </tr>
+    </template>
+    <!-- <div v-for="(v, k,) in info" :key="v">
             <h2>{{k}} {{(v)}}  </h2>
              
             <hr>
-  </div>-->
+    </div>-->
   </table>
   <!-- <b-container fluid >
  
@@ -52,10 +50,8 @@
       </b-row>
     </template>
       
-  </b-container> -->
+  </b-container>-->
   <!-- </div> -->
-
-
 </template>
 
 <script>
@@ -72,53 +68,19 @@ export default {
         EduYearTH: "",
         EduTerm: "",
         Grade: ""
-      },
-      enrollg: {
-        EnrollID: "",
-        StudentID: "",
-        EduYearTH: "",
-        EduTerm: "",
-        EnrollOrder: "",
-        SubjectCode: "",
-        SubjectNameTH: "",
-        SubjectNameEN: "",
-        SectionCode: "",
-        Amount: "",
-        Credit: "",
-        EnrollMethod: "",
-        WithdrawalType: "",
-        EnrolTypeID: "",
-        EnrolTypeDesc: "",
-        EnrollStudyTypeID: "",
-        EnrollStudyTypeDesc: "",
-        EnrollStatusID: "",
-        EnrollStatusDesc: ""
       }
     };
   },
   mounted() {
-   
     var self = this;
-    var enroll = this;
     axios
       .get("https://sispsu.herokuapp.com/api/grade/5930213034/")
       .then(function(response) {
-        console.log(JSON.stringify(response.data.data));
+        // console.log(JSON.stringify(response.data.data));
         self.info = response.data.data;
       });
-      axios
-      .get("https://sispsu.herokuapp.com/api/enroll/5930213034/")
-      .then(function(response) {
-        console.log("Enroll5555+"+JSON.stringify(response.data.data));
-        enroll.enrollg = response.data.data;
-      });
-
-
-
-  },
-
+  }
 };
-
 </script>
 
 <style >
@@ -129,25 +91,30 @@ export default {
   /* font-weight: bold; */
   text-align: left;
 }
-.text{
-/* text-align: left;
+.text {
+  /* text-align: left;
 text-overflow: ellipsis; */
 }
-.rowhead{
-
+.rowhead {
 }
-.head1{
-   background-color: rgb(158, 216, 209);
-   /* font-weight: bold; */
+.head1 {
+  background-color: rgb(158, 216, 209);
+  /* font-weight: bold; */
 }
-.head2{
+.head2 {
   background-color: red;
 }
-tr:nth-child(even) { background-color:  rgb(220,220,220); }
-  tr:nth-child(odd) { background-color:#FFFFFF; }
-    tr:first-child {background-color:#FFFFFF;}
-    .sbjname{
-      text-align: left;
-    }
+tr:nth-child(even) {
+  background-color: rgb(220, 220, 220);
+}
+tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+tr:first-child {
+  background-color: #ffffff;
+}
+.sbjname {
+  text-align: left;
+}
 </style>
 
