@@ -3,7 +3,7 @@
     <div id="nav">
       <vue-link>
       <router-link to="/">Home</router-link> |
-      <vue-link to="/about">About</vue-link> |
+      <router-link to="/about">About</router-link> |
       <router-link to="/information" >Information</router-link> |
       <router-link to="/Table" >Table</router-link> |
       <router-link to="/Schedule" >Schedule</router-link> |
