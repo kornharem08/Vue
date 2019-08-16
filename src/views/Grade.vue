@@ -104,7 +104,7 @@ text-overflow: ellipsis; */
 .head2 {
   background-color: red;
 }
-tr:nth-child(even) {
+/* tr:nth-child(even) {
   background-color: rgb(220, 220, 220);
 }
 tr:nth-child(odd) {
@@ -112,7 +112,7 @@ tr:nth-child(odd) {
 }
 tr:first-child {
   background-color: #ffffff;
-}
+} */
 .sbjname {
   text-align: left;
 }

@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style>
-  tr:nth-child(even) { background-color:  rgb(220,220,220); }
-    tr:nth-child(odd) { background-color:#FFFFFF; }
-    tr:first-child {background-color:#FFFFFF;}
+  tr:nth-child(even) { background-color:  rgb(220,220,220,.5); }
+    tr:nth-child(odd) { background-color:#FFFFFF,.5; }
+    tr:first-child {background-color:#FFFFFF,.5;}
 </style>

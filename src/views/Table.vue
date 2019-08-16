@@ -49,12 +49,14 @@
   border: 5px;
   border-block-color: black;
   /* background-color: ${color}; */
-  background-color: rgba(232, 235, 234, 0.699);
+  background-color: rgba(207, 211, 210, 0.699);
   /* margin-left: 5px;
   margin-right: 5px; */
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .subject1 {
+  margin-top: 10px;
+
   text-align: left;
 }
 .datetime1 {
@@ -65,7 +67,7 @@
   size: 18px;
 }
 /* .col1 {
-  border-right: 3px solid orange;
+  border-right: 3px solid orange; 
 } */
 .sjname {
   font-size: 18px;  
@@ -122,7 +124,6 @@ export default {
         "red",
         "silver",
         "teal",
-        "white",
         "yellow"
       ]
     };

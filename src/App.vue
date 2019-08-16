@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <vue-link>
+   
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/information" >Information</router-link> |
@@ -10,7 +10,7 @@
       <router-link to="/api" >Examination Schedule</router-link> |
       <router-link to="/Grade" >Grade</router-link> |
        <router-link to="/Enroll" >Enroll</router-link> |
-</vue-link>
+       
     </div>
     <router-view/>
   </div>
