@@ -7,6 +7,7 @@ import Schedule from './views/Schedule.vue'
 import Grade from './views/Grade.vue'
 import Enroll from './views/Enroll.vue'
 import geturl from './views/geturl.vue'
+import getgrade from './views/getgrade.vue'
 
 import VueLink from 'vue-link'
 Vue.use(Router)
@@ -65,6 +66,12 @@ export default new Router({
       path: '/geturl/:id',
       name: 'geturl',
       component : geturl,
+      props: true
+    },
+    {
+      path: '/getgrade/:id/:year/:term/:mf',
+      name: 'getgrade',
+      component : getgrade,
       props: true
     },
     {
